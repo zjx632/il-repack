@@ -309,8 +309,8 @@ namespace ILRepacking
             if (!string.IsNullOrEmpty(AttributeFile) && CopyAttributes)
                 throw new InvalidOperationException("Option 'attr' can not be used with 'copyattrs'.");
 
-            if (RenameInternalized && !Internalize)
-                throw new InvalidOperationException("Option 'renameInternalized' is only valid with 'internalize'.");
+            //if (RenameInternalized && !Internalize)
+            //    throw new InvalidOperationException("Option 'renameInternalized' is only valid with 'internalize'.");
             
             if (string.IsNullOrEmpty(OutputFile))
                 throw new ArgumentException("No output file given.");

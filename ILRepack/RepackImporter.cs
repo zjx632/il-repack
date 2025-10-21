@@ -162,7 +162,7 @@ namespace ILRepacking
             return AreTypesEqualByName(t1.DeclaringType, t2.DeclaringType);
         }
 
-        public TypeDefinition Import(TypeDefinition type, Collection<TypeDefinition> col, bool internalize)
+        public TypeDefinition Import(TypeDefinition type, Collection<TypeDefinition> col, bool internalize, bool primary)
         {
             _logger.Verbose("- Importing " + type);
             if (ShouldDrop(type))
@@ -233,7 +233,7 @@ namespace ILRepacking
             {
                 if (ShouldDrop(nested) == false)
                 {
-                    Import(nested, nt.NestedTypes, false);
+                    Import(nested, nt.NestedTypes, false, primary);
                 }
             }
             foreach (FieldDefinition field in type.Fields)
@@ -266,7 +266,7 @@ namespace ILRepacking
                 }
             }
 
-            if (internalize && _options.RenameInternalized)
+            if (/*internalize &&*/ _options.RenameInternalized && !primary)
             {
                 string newName = GenerateName(nt, type.Module.Mvid.ToString());
                 _logger.Verbose("Renaming " + nt.FullName + " into " + newName);

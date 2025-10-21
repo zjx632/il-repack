@@ -64,7 +64,7 @@ namespace ILRepacking.Steps
             foreach (var r in _repackContext.PrimaryAssemblyDefinition.Modules.SelectMany(x => x.Types))
             {
                 _logger.Verbose($"- Importing {r} from {r.Module}");
-                _repackImporter.Import(r, _repackContext.TargetAssemblyMainModule.Types, false);
+                _repackImporter.Import(r, _repackContext.TargetAssemblyMainModule.Types, false, true);
             }
 
             foreach (var module in _repackContext.OtherAssemblies.SelectMany(x => x.Modules))
@@ -73,7 +73,7 @@ namespace ILRepacking.Steps
                 foreach (var r in module.Types)
                 {
                     _logger.Verbose($"- Importing {r} from {r.Module}");
-                    _repackImporter.Import(r, _repackContext.TargetAssemblyMainModule.Types, ShouldInternalize(r, internalizeAssembly));
+                    _repackImporter.Import(r, _repackContext.TargetAssemblyMainModule.Types, ShouldInternalize(r, internalizeAssembly), false);
                 }
             }
         }

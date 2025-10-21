@@ -1,4 +1,4 @@
-//
+﻿//
 // Copyright (c) 2011 Francois Valdy
 // Copyright (c) 2015 Timotei Dolean
 //
@@ -29,7 +29,7 @@ namespace ILRepacking
 
         MethodReference Import(MethodReference reference, IGenericParameterProvider context);
 
-        TypeDefinition Import(TypeDefinition type, Collection<TypeDefinition> col, bool internalize);
+        TypeDefinition Import(TypeDefinition type, Collection<TypeDefinition> col, bool internalize, bool primary);
 
         void Import(ExportedType type, Collection<ExportedType> col, ModuleDefinition module);
     }
